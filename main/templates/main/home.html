@@ -1,0 +1,32 @@
+{% extends 'main\header.html' %}
+
+
+{% block content %}
+
+
+<h1>Smart Gamers</h1>
+ 
+    <div class="card" style="height: 180px;">
+       
+        <div class="row">
+            
+            {% for room in rooms %}
+            <div class="col">
+                                    
+                <h5>{{room.id}} -- <a href="{% url 'room' room.id %}">{{room.name}}</a></h5>
+                <img src="{{room.image.url}} "class="card-img-top" alt="This is a game">
+                <p class="card-text">{{room.description}}</p>
+                <a  href="{% url 'gaming' %}"><button class="submit">Play</button></a>
+                        
+            </div>
+            {% if forloop.counter|divisibleby:3 and not forloop.last %}
+                </div><div class="row">
+            {% endif %}
+
+            {% endfor %}
+            
+        </div>
+       
+        
+    </div>
+{% endblock content %}
