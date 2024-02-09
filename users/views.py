@@ -88,3 +88,24 @@ def profile(request, username):
             )
     
     return redirect("/")
+
+def adduser(request):
+    if request.method == "POST":
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            messages.success(request, f"New account created: {user.username}")
+            return redirect('/')
+
+        else:
+            for error in list(form.errors.values()):
+                messages.error(request, error)
+
+    else:
+        form = UserRegistrationForm()
+
+    return render(
+        request=request,
+        template_name = "users/adduser.html",
+        context={"form": form}
+        )

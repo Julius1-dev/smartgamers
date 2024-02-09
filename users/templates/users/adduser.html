@@ -1,0 +1,19 @@
+{% extends "main/header.html" %}
+
+{% block content %}
+    <div class="content-section">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">New User</legend>
+                {{ form.as_p }}
+            </fieldset>
+
+            By registering, you accept the Terms of Service and Privacy Notice
+
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Add User</button>
+            </div>
+        </form>
+    </div>
+{% endblock content %}
